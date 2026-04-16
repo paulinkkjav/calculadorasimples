@@ -1,14 +1,49 @@
-[//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+import java.util.Scanner;
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        double num1;
+        double num2;
+        char operador;
+        double resultado = 0;
+        boolean OperadorValido = true;
+
+        System.out.print("Coloque o primeiro número:");
+        num1 = sc.nextDouble();
+
+        System.out.println("Coloque o OPERADOR (+ , - , * , / , ^).");
+        operador = sc.next().charAt(0);
+
+        System.out.print("Coloque o segundo número:");
+        num2 = sc.nextDouble();
+
+        switch (operador) {
+            case '+' -> resultado = num1 + num2;
+            case '-' -> resultado = num1 - num2;
+            case '*' -> resultado = num1 * num2;
+            case '/' -> {
+                if (num2 == 0) {
+                    System.out.println("Não pode se dividir por zero.");
+                    OperadorValido = false;
+                } else {
+                    resultado = num1 / num2;
+                }
+                }
+                case '^' -> resultado = Math.pow(num1, num2);
+
+            default ->  {
+                System.out.println("Não é um operador valido!");
+                OperadorValido = false;
+            }
+            }
+            if(OperadorValido){
+                System.out.printf("O Resultado é igual a %.2f", resultado);
+            }
+
+            sc.close();
+        }
     }
-}
-]
